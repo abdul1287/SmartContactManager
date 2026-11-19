@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base :: Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">About Page</title>
+</head>
+<body>
+    <section class="about-section py-5 relative-z">
+        <div class="container">
+            
+            <div class="row justify-content-center mb-5 text-center">
+                <div class="col-lg-10 glass-card p-5 mt-4">
+                    <h1 class="display-4 fw-bold mb-3 text-white">About <span class="text-neon">SmartCM</span></h1>
+                    <p class="lead text-light-muted mb-0">We are redefining how professionals connect, organize, and thrive. Smart Contact Manager is built for speed, secured by cutting-edge encryption, and designed with elegant simplicity.</p>
+                </div>
+            </div>
+
+            <div class="row align-items-stretch mb-5 g-4">
+                <div class="col-md-6">
+                    <div class="glass-card p-4 h-100 border-top-neon">
+                        <h3 class="text-neon fw-bold mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-bullseye me-2" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                                <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+                                <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                            </svg>
+                            Our Mission
+                        </h3>
+                        <p class="text-light-muted">To eliminate digital clutter and provide a seamless, high-performance hub for your most valuable asset: your network. We believe managing contacts shouldn't be a chore, but a strategic advantage.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="glass-card p-4 h-100 border-top-neon">
+                        <h3 class="text-neon fw-bold mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-eye me-2" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                            </svg>
+                            Our Vision
+                        </h3>
+                        <p class="text-light-muted">To become the global standard for intelligent relationship management, empowering individuals and businesses to foster meaningful connections without the friction of outdated tools.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-5 mt-5">
+                <h2 class="fw-bold text-white">The Principles We <span class="text-neon">Code By</span></h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="glass-card p-4 text-center h-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="var(--neon-blue)" class="bi bi-shield-lock mb-3" viewBox="0 0 16 16">
+                            <path d="M5.338 1.59a59.768 59.768 0 0 0-2.836.856.8.8 0 0 0-.328.39c-.554 1.628-.17 2.9.605 3.978.768 1.071 1.954 1.99 3.164 2.894l.009.006c.115.086.22.167.332.25.6.45 1.212.91 1.816 1.4.604-.49 1.216-.95 1.816-1.4.111-.083.217-.164.332-.25l.009-.006c1.21-.904 2.395-1.823 3.164-2.894.776-1.077 1.16-2.35.605-3.978a.8.8 0 0 0-.328-.39 59.76 59.76 0 0 0-2.836-.856 2.5 2.5 0 0 1-1.43-.84l-.008-.01c-.22-.24-.43-.48-.64-.71l-.01-.012a2.5 2.5 0 0 1-.36-.45l-.014-.022A.8.8 0 0 0 8 0c-.237 0-.46.126-.591.332l-.014.022a2.5 2.5 0 0 1-.36.45l-.01.012c-.21.23-.42.47-.64.71l-.008.01a2.5 2.5 0 0 1-1.43.84zm3.146 1.076a.5.5 0 0 1 .53-.162c.16.05.31.11.46.18l.01.004c.15.07.29.15.43.23a3.5 3.5 0 0 0 1.99.64A58.84 58.84 0 0 1 15 4.38c-.37 1.34-.14 2.38.48 3.24.6.83 1.6 1.62 2.67 2.42l.02.015c.34.25.68.51 1.02.78.11.09.21.18.3.28a.5.5 0 0 1-.78.64c-.1-.1-.2-.19-.3-.28l-.01-.01c-.34-.27-.68-.53-1.02-.78l-.02-.015c-1.07-.8-2.07-1.59-2.67-2.42-.62-.86-.85-1.9-.48-3.24A58.84 58.84 0 0 1 1 4.38a3.5 3.5 0 0 0 1.99-.64c.14-.08.28-.16.43-.23l.01-.004c.15-.07.3-.13.46-.18a.5.5 0 0 1 .6.74z"/>
+                            <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415z"/>
+                        </svg>
+                        <h4 class="fw-bold text-white">Uncompromising Security</h4>
+                        <p class="text-light-muted text-sm mt-2">Your data privacy is our baseline. We implement bank-grade security protocols so your contacts remain exclusively yours.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 text-center h-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="var(--neon-blue)" class="bi bi-lightning-charge mb-3" viewBox="0 0 16 16">
+                            <path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41 4.157 8.5z"/>
+                        </svg>
+                        <h4 class="fw-bold text-white">Blazing Performance</h4>
+                        <p class="text-light-muted text-sm mt-2">Optimized for milliseconds. Our lightweight architecture ensures instant searches and fluid navigation.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 text-center h-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="var(--neon-blue)" class="bi bi-cpu mb-3" viewBox="0 0 16 16">
+                            <path d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0zm-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3h-7zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+                        </svg>
+                        <h4 class="fw-bold text-white">Smart Architecture</h4>
+                        <p class="text-light-muted text-sm mt-2">We pair robust Spring Boot functionality with a premium, glassmorphism interface that makes organizing an absolute joy.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</body>
+</html>

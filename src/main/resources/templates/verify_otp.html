@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base :: Layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Verify OTP | Smart Contact Manager</title>
+</head>
+
+<body>
+    <section class="py-5 relative-z d-flex align-items-center min-vh-100">
+
+        <style>
+            /* Glassmorphism Form Inputs */
+            .glass-input {
+                background: rgba(255, 255, 255, 0.03) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                color: #ffffff !important;
+                border-radius: 8px;
+                padding: 12px 15px;
+                font-size: 1.1rem;
+                letter-spacing: 2px;
+                /* Spreads out the numbers slightly for OTPs */
+                transition: all 0.3s ease;
+            }
+
+            .glass-input:focus {
+                background: rgba(0, 229, 255, 0.05) !important;
+                border-color: #00E5FF !important;
+                box-shadow: 0 0 15px rgba(0, 229, 255, 0.2) !important;
+                outline: none;
+            }
+
+            .glass-input::placeholder {
+                color: #6c757d;
+                letter-spacing: normal;
+                font-size: 1rem;
+            }
+
+            .glass-label {
+                color: #a0a5b5;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-weight: 600;
+                margin-bottom: 8px;
+                display: block;
+            }
+
+            /* Neon Primary Button */
+            .btn-neon {
+                color: #00E5FF;
+                border: 1px solid rgba(0, 229, 255, 0.4);
+                background: rgba(0, 229, 255, 0.05);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .btn-neon:hover {
+                background: #00E5FF;
+                color: #0a0b10;
+                box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+                border-color: #00E5FF;
+                transform: translateY(-2px);
+            }
+
+            /* Subtle Text Link */
+            .glass-link {
+                color: #a0a5b5;
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+            }
+
+            .glass-link:hover {
+                color: #00E5FF;
+                text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+            }
+
+            /* Neon Red Error Alert Styling */
+            .glass-alert-danger {
+                background: rgba(255, 51, 102, 0.1) !important;
+                /* Deep transparent red */
+                border: 1px solid rgba(255, 51, 102, 0.4) !important;
+                color: #ff3366 !important;
+                /* Neon red text */
+                box-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
+                backdrop-filter: blur(10px);
+                border-radius: 8px;
+                font-weight: 500;
+            }
+        </style>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-5">
+
+                    <div class="glass-card p-4 p-md-5 border-top-neon shadow-lg">
+
+                        <div class="text-center mb-4">
+                            <!-- Glowing Shield Check Icon -->
+                            <div class="mb-4 d-inline-flex align-items-center justify-content-center rounded-circle"
+                                style="width: 70px; height: 70px; background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.3);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#00E5FF"
+                                    class="bi bi-shield-check" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.338 1.59a59.768 59.768 0 0 0-2.836.856.8.8 0 0 0-.502.743v4.717c0 4.21 2.3 8.16 6 9.94 3.7-1.78 6-5.73 6-9.94V3.189a.8.8 0 0 0-.502-.743 59.768 59.768 0 0 0-2.836-.856C9.176 1.34 8.5 1.04 8 1c-.5.04-1.176.34-2.662.59zM8 2.015c1.03.1 2.02.4 2.946.746.3.11.58.22.845.334v4.34c0 3.73-2.04 7.23-5 8.78-2.96-1.55-5-5.05-5-8.78v-4.34c.265-.11.545-.22.845-.334C5.98 2.415 6.97 2.115 8 2.015z" />
+                                    <path
+                                        d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                </svg>
+                            </div>
+                            <h2 class="fw-bold text-white mb-2">Verify OTP</h2>
+                            <p class="text-light-muted">We have sent a verification code to your email address.</p>
+                        </div>
+
+                        <div class="alert glass-alert-danger d-flex align-items-center" role="alert"
+                            th:if="${message != null and message.type == 'alert-danger'}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-exclamation-triangle-fill me-3 flex-shrink-0" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
+                            <span th:text="${message.content}"></span>
+                        </div>
+
+                        <!-- Form Starts Here -->
+                        <form th:action="@{/verify-otp}" method="POST">
+
+                            <!-- OTP FIELD -->
+                            <div class="mb-4 text-start">
+                                <label for="otp" class="glass-label"><i class="bi bi-123 text-neon me-1"></i>
+                                    Verification Code</label>
+                                <input type="text" class="form-control glass-input text-center" id="otp" name="otp"
+                                    placeholder="Enter 6-digit code" required autocomplete="off" maxlength="6"
+                                    minlength="6" pattern="\d{6}" title="Please enter a 6-digit numeric code.">
+                            </div>
+
+                            <!-- Action Button -->
+                            <div class="d-flex justify-content-center pt-2">
+                                <button type="submit"
+                                    class="btn btn-neon px-5 py-2 fw-bold d-flex align-items-center rounded-3 w-30 justify-content-center">
+                                    Verify OTP
+                                </button>
+                            </div>
+
+                            <!-- Links -->
+                            <div class="text-center mt-4 d-flex justify-content-between px-2">
+                                <a th:href="@{/signin}" class="glass-link">
+                                    <i class="bi bi-arrow-left-short"></i> Cancel
+                                </a>
+                                <!-- Optionally route this to your resend OTP backend method -->
+                                <a th:href="@{/forgot}" class="glass-link">
+                                    Resend Code
+                                </a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

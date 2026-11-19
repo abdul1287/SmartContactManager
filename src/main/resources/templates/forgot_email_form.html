@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base :: Layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Forgot Password | Smart Contact Manager</title>
+</head>
+
+<body>
+    <section class="py-5 relative-z d-flex align-items-center min-vh-100">
+
+        <style>
+            /* Glassmorphism Form Inputs */
+            .glass-input {
+                background: rgba(255, 255, 255, 0.03) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                color: #ffffff !important;
+                border-radius: 8px;
+                padding: 12px 15px;
+                transition: all 0.3s ease;
+            }
+
+            .glass-input:focus {
+                background: rgba(0, 229, 255, 0.05) !important;
+                border-color: #00E5FF !important;
+                box-shadow: 0 0 15px rgba(0, 229, 255, 0.2) !important;
+                outline: none;
+            }
+
+            .glass-input::placeholder {
+                color: #6c757d;
+            }
+
+            .glass-label {
+                color: #a0a5b5;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-weight: 600;
+                margin-bottom: 8px;
+                display: block;
+            }
+
+            /* Neon Primary Button */
+            .btn-neon {
+                color: #00E5FF;
+                border: 1px solid rgba(0, 229, 255, 0.4);
+                background: rgba(0, 229, 255, 0.05);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .btn-neon:hover {
+                background: #00E5FF;
+                color: #0a0b10;
+                box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+                border-color: #00E5FF;
+                transform: translateY(-2px);
+            }
+
+            /* Subtle Text Link */
+            .glass-link {
+                color: #a0a5b5;
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+            }
+
+            .glass-link:hover {
+                color: #00E5FF;
+                text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+            }
+
+            /* Neon Red Error Alert Styling */
+            .glass-alert-danger {
+                background: rgba(255, 51, 102, 0.1) !important;
+                /* Deep transparent red */
+                border: 1px solid rgba(255, 51, 102, 0.4) !important;
+                color: #ff3366 !important;
+                /* Neon red text */
+                box-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
+                backdrop-filter: blur(10px);
+                border-radius: 8px;
+                font-weight: 500;
+            }
+
+            /* Neon Green Success Alert Styling */
+            .glass-alert-success {
+                background: rgba(0, 230, 118, 0.1) !important;
+                /* Deep transparent green */
+                border: 1px solid rgba(0, 230, 118, 0.4) !important;
+                color: #00E676 !important;
+                /* Neon green text */
+                box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+                backdrop-filter: blur(10px);
+                border-radius: 8px;
+                font-weight: 500;
+            }
+        </style>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-5">
+
+                    <div class="glass-card p-4 p-md-5 border-top-neon shadow-lg">
+
+                        <div class="text-center mb-5">
+                            <!-- Glowing Envelope Icon -->
+                            <div class="mb-4 d-inline-flex align-items-center justify-content-center rounded-circle"
+                                style="width: 70px; height: 70px; background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.3);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#00E5FF"
+                                    class="bi bi-envelope-exclamation" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z" />
+                                    <path
+                                        d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1.5a.5.5 0 0 1-1 0V11a.5.5 0 0 1 1 0Zm0 3a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z" />
+                                </svg>
+                            </div>
+                            <h2 class="fw-bold text-white mb-2">Forgot Password?</h2>
+                            <p class="text-light-muted">Enter your registered email address and we'll send you an OTP to
+                                reset your password.</p>
+                        </div>
+
+                        <div class="alert glass-alert-danger d-flex align-items-center" role="alert"
+                            th:if="${message != null and message.type == 'alert-danger'}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-exclamation-triangle-fill me-3 flex-shrink-0" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
+                            <span th:text="${message.content}"></span>
+                        </div>
+
+                        <!-- Form Starts Here -->
+                        <form th:action="@{/send-otp}" method="POST">
+
+                            <!-- EMAIL FIELD -->
+                            <div class="mb-5 text-start">
+                                <label for="email" class="glass-label"><i class="bi bi-envelope text-neon me-1"></i>
+                                    Registered Email</label>
+                                <input type="email" class="form-control glass-input" id="email" name="email"
+                                    placeholder="Enter your email address" required>
+                            </div>
+
+                            <!-- Action Button -->
+                            <div class="d-flex justify-content-center pt-2">
+                                <button type="submit"
+                                    class="btn btn-neon px-5 py-2 fw-bold d-flex align-items-center rounded-3 w-100 justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                        class="bi bi-send-fill me-2" viewBox="0 0 16 16">
+                                        <path
+                                            d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
+                                    </svg>
+                                    Send OTP
+                                </button>
+                            </div>
+
+                            <!-- Back to Login Link -->
+                            <div class="text-center mt-4">
+                                <a th:href="@{/signin}" class="glass-link">
+                                    <i class="bi bi-arrow-left-short"></i> Back to Login
+                                </a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

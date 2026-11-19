@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base :: Layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Sign Up - Smart Contact Manager</title>
+</head>
+
+<body>
+    <section class="signup-section py-2 relative-z">
+
+        <style>
+            .glass-input {
+                background: rgba(255, 255, 255, 0.03) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                color: #ffffff !important;
+                border-radius: 8px;
+                padding: 12px 15px;
+                transition: all 0.3s ease;
+            }
+
+            .glass-input:focus {
+                background: rgba(255, 255, 255, 0.06) !important;
+                border-color: #00E5FF !important;
+                box-shadow: 0 0 15px rgba(0, 229, 255, 0.2) !important;
+                color: #ffffff !important;
+                outline: none;
+            }
+
+            .glass-input::placeholder {
+                color: #6c757d;
+            }
+
+            .form-label {
+                color: #a0a5b5;
+                font-weight: 600;
+                font-size: 0.9rem;
+                letter-spacing: 0.5px;
+                margin-bottom: 8px;
+            }
+
+            /* Override autofill styling for dark theme */
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+                -webkit-box-shadow: 0 0 0 30px #0f111a inset !important;
+                -webkit-text-fill-color: white !important;
+                transition: background-color 5000s ease-in-out 0s;
+            }
+
+            /* Glassmorphism Checkbox Styling */
+            .glass-checkbox {
+                background-color: rgba(255, 255, 255, 0.05) !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                width: 1.2rem;
+                height: 1.2rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .glass-checkbox:checked {
+                background-color: #00E5FF !important;
+                border-color: #00E5FF !important;
+                box-shadow: 0 0 12px rgba(0, 229, 255, 0.5) !important;
+            }
+
+            .glass-checkbox:focus {
+                box-shadow: 0 0 10px rgba(0, 229, 255, 0.2) !important;
+                border-color: #00E5FF !important;
+            }
+
+            /* Neon Red Error Alert Styling */
+            .glass-alert-danger {
+                background: rgba(255, 51, 102, 0.1) !important;
+                /* Deep transparent red */
+                border: 1px solid rgba(255, 51, 102, 0.4) !important;
+                color: #ff3366 !important;
+                /* Neon red text */
+                box-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
+                backdrop-filter: blur(10px);
+                border-radius: 8px;
+                font-weight: 500;
+            }
+
+            /* Neon Green Success Alert Styling */
+            .glass-alert-success {
+                background: rgba(0, 230, 118, 0.1) !important;
+                /* Deep transparent green */
+                border: 1px solid rgba(0, 230, 118, 0.4) !important;
+                color: #00E676 !important;
+                /* Neon green text */
+                box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+                backdrop-filter: blur(10px);
+                border-radius: 8px;
+                font-weight: 500;
+            }
+
+            /* Inline Form Validation Errors - Neon Red */
+            .text-neon-red {
+                color: #ff3366 !important;
+                text-shadow: 0 0 5px rgba(255, 51, 102, 0.4);
+                font-size: 0.85rem;
+                font-weight: 500;
+                margin-top: 6px;
+                display: block;
+            }
+
+            /* Make the input border glow red when invalid */
+            .glass-input.is-invalid {
+                border-color: #ff3366 !important;
+                box-shadow: 0 0 10px rgba(255, 51, 102, 0.2) !important;
+            }
+
+            .glass-input.is-invalid:focus {
+                box-shadow: 0 0 15px rgba(255, 51, 102, 0.4) !important;
+            }
+        </style>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 mt-2">
+
+                    <div class="glass-card p-4 p-md-5 border-top-neon shadow-lg">
+                        <div class="text-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="var(--neon-blue)"
+                                class="bi bi-person-plus mb-3" viewBox="0 0 16 16">
+                                <path
+                                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                <path fill-rule="evenodd"
+                                    d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                            </svg>
+                            <h2 class="fw-bold text-white">Create <span class="text-neon">Account</span></h2>
+                            <p class="text-light-muted">Join the smartest contact management platform today.</p>
+                        </div>
+
+                        <div class="alert glass-alert-success d-flex align-items-center" role="alert"
+                            th:if="${message != null and message.type == 'alert-success'}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-check-circle-fill me-3 flex-shrink-0" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg>
+                            <span th:text="${message.content}"></span>
+                        </div>
+
+                        <div class="alert glass-alert-danger d-flex align-items-center" role="alert"
+                            th:if="${message != null and message.type == 'alert-danger'}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-exclamation-triangle-fill me-3 flex-shrink-0" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
+                            <span th:text="${message.content}"></span>
+                        </div>
+                        <form action="" th:action="@{/register}" th:method="post" th:object="${user}">
+
+                            <div class="mb-4">
+                                <label for="name_field" class="form-label">Full Name</label>
+                                <input type="text" class="form-control glass-input" id="name_field" name="name"
+                                    placeholder="Enter your full name" required th:value="*{name}"
+                                    th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''">
+                                <span class="text-neon-red" th:if="${#fields.hasErrors('name')}"
+                                    th:errors="*{name}"></span>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="email_field" class="form-label">Email Address</label>
+                                <input type="email" class="form-control glass-input" id="email_field" name="email"
+                                    placeholder="name@example.com" required th:value="*{email}"
+                                    th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''">
+                                <span class="text-neon-red" th:if="${#fields.hasErrors('email')}"
+                                    th:errors="*{email}"></span>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="password_field" class="form-label">Password</label>
+                                <input type="password" class="form-control glass-input" id="password_field"
+                                    name="password" placeholder="Create a strong password" required
+                                    th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''">
+                                <span class="text-neon-red" th:if="${#fields.hasErrors('password')}"
+                                    th:errors="*{password}"></span>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="about_field" class="form-label">About Yourself</label>
+                                <textarea class="form-control glass-input" id="about_field" name="about" rows="4"
+                                    placeholder="Tell us a little bit about yourself..." th:text="*{about}"></textarea>
+                            </div>
+                            <div class="mb-4 form-check d-flex align-items-center">
+                                <input type="checkbox" class="form-check-input glass-checkbox me-2 mt-0"
+                                    id="agreement_field" name="agreement" required>
+                                <label class="form-check-label text-light-muted text-sm" for="agreement_field"
+                                    style="font-size: 0.9rem;">
+                                    I accept the <a href="#" class="text-neon text-decoration-none fw-bold">Terms and
+                                        Conditions</a>
+                                </label>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="submit"
+                                    class="btn btn-neon w-50 py-3 fw-bold fs-5 text-uppercase tracking-wide">Sign
+                                    Up</button>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <p class="text-light-muted text-sm mb-0">Already have an account? <a th:href="@{/signin}"
+                                        class="text-neon text-decoration-none fw-bold ms-1">Login here</a></p>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

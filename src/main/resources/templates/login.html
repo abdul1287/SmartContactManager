@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base :: Layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Login - Smart Contact Manager</title>
+</head>
+
+<body>
+    <section class="login-section pt-3 pb-5 relative-z">
+
+        <style>
+            .glass-input {
+                background: rgba(255, 255, 255, 0.03) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                color: #ffffff !important;
+                border-radius: 8px;
+                padding: 12px 15px;
+                transition: all 0.3s ease;
+            }
+
+            .glass-input:focus {
+                background: rgba(255, 255, 255, 0.06) !important;
+                border-color: #00E5FF !important;
+                box-shadow: 0 0 15px rgba(0, 229, 255, 0.2) !important;
+                color: #ffffff !important;
+                outline: none;
+            }
+
+            .glass-input::placeholder {
+                color: #6c757d;
+            }
+
+            .form-label {
+                color: #a0a5b5;
+                font-weight: 600;
+                font-size: 0.9rem;
+                letter-spacing: 0.5px;
+                margin-bottom: 8px;
+            }
+
+            /* Override autofill styling for dark theme */
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+                -webkit-box-shadow: 0 0 0 30px #0f111a inset !important;
+                -webkit-text-fill-color: white !important;
+                transition: background-color 5000s ease-in-out 0s;
+            }
+
+            /* Alert Styles */
+            .glass-alert-danger {
+                background: rgba(255, 51, 102, 0.1) !important;
+                border: 1px solid rgba(255, 51, 102, 0.4) !important;
+                color: #ff3366 !important;
+                box-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
+                backdrop-filter: blur(10px);
+                border-radius: 8px;
+                font-weight: 500;
+            }
+
+            .glass-alert-success {
+                background: rgba(0, 230, 118, 0.1) !important;
+                border: 1px solid rgba(0, 230, 118, 0.4) !important;
+                color: #00E676 !important;
+                box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+                backdrop-filter: blur(10px);
+                border-radius: 8px;
+                font-weight: 500;
+            }
+        </style>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-5 mt-5">
+
+                    <div class="glass-card p-4 p-md-5 border-top-neon shadow-lg">
+
+                        <div class="text-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="var(--neon-blue)"
+                                class="bi bi-box-arrow-in-right mb-3" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                                <path fill-rule="evenodd"
+                                    d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                            </svg>
+                            <h2 class="fw-bold text-white">Welcome <span class="text-neon">Back</span></h2>
+                            <p class="text-light-muted">Sign in to manage your contacts.</p>
+                        </div>
+
+                        <div class="alert glass-alert-success d-flex align-items-center" role="alert"
+                            th:if="${session.message != null and session.message.type == 'alert-success'}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-check-circle-fill me-3 flex-shrink-0" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg>
+                            <span th:text="${session.message.content}"></span>
+                        </div>
+
+                        <div class="alert glass-alert-success d-flex align-items-center" role="alert"
+                            th:if="${message != null and message.type == 'alert-success'}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-check-circle-fill me-3 flex-shrink-0" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg>
+                            <span th:text="${message.content}"></span>
+                        </div>
+
+                        <div th:if="${param.error}" class="alert glass-alert-danger d-flex align-items-center"
+                            role="alert">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-exclamation-triangle-fill me-3 flex-shrink-0" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
+                            <span>Invalid username or password.</span>
+                        </div>
+
+                        <div th:if="${param.logout}" class="alert glass-alert-success d-flex align-items-center"
+                            role="alert">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-check-circle-fill me-3 flex-shrink-0" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg>
+                            <span>You have been successfully logged out.</span>
+                        </div>
+
+                        <form th:action="@{/dologin}" method="post">
+
+                            <div class="mb-4">
+                                <label for="email_field" class="form-label">Email Address</label>
+                                <input type="email" class="form-control glass-input" id="email_field" name="username"
+                                    placeholder="name@example.com" required autofocus>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="password_field" class="form-label">Password</label>
+                                <input type="password" class="form-control glass-input" id="password_field"
+                                    name="password" placeholder="Enter your password" required>
+
+                                <a th:href="@{/forgot}" class="text-neon text-decoration-none d-block text-start mt-3"
+                                    style="font-size: 0.95rem; letter-spacing: 0.5px;">Forgot password?</a>
+                            </div>
+
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="submit"
+                                    class="btn btn-neon w-50 py-3 fw-bold fs-5 text-uppercase tracking-wide">Sign
+                                    In</button>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <p class="text-light-muted text-sm mb-0">Don't have an account? <a th:href="@{/signup}"
+                                        class="text-neon text-decoration-none fw-bold ms-1">Sign Up here</a></p>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
